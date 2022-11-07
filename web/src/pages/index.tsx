@@ -113,8 +113,29 @@ export default function Home({
   );
 }
 
-// api called indexed by google
-export const getServerSideProps = async () => {
+// // api called indexed by google
+// export const getServerSideProps = async () => {
+//   const [
+//     poolsCountResponse,
+//     guessesCountResponse,
+//     usersCountResponse,
+//   ] = await Promise.all([
+//     api.get('/pools/count'),
+//     api.get('/guesses/count'),
+//     api.get('/users/count'),
+//   ]);
+
+//   return {
+//     props: {
+//       poolsCount: poolsCountResponse.data.count,
+//       guessesCount: guessesCountResponse.data.count,
+//       usersCount: usersCountResponse.data.count,
+//     },
+//   };
+// };
+
+// challenge to get the data from the api and show it on the page revalidate: 30 minutes
+export const getStaticProps = async () => {
   const [
     poolsCountResponse,
     guessesCountResponse,
@@ -131,5 +152,6 @@ export const getServerSideProps = async () => {
       guessesCount: guessesCountResponse.data.count,
       usersCount: usersCountResponse.data.count,
     },
+    revalidate: 30 * 60, // 30 minutes
   };
 };
