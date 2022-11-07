@@ -6,6 +6,7 @@ import {
 } from '@expo-google-fonts/roboto';
 import { NativeBaseProvider, StatusBar } from 'native-base';
 import { Loading } from './src/components/Loading';
+import { AuthContextProvider } from './src/contexts/AuthContext';
 import { SignIn } from './src/screens/SignIn';
 import { THEME } from './src/styles/theme';
 
@@ -19,12 +20,14 @@ export default function App() {
   return (
     // it will wrap all the components to provide the theme to all app
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor={'transparent'}
-        translucent // for android all are transparent
-      />
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      <AuthContextProvider>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor={'transparent'}
+          translucent // for android all are transparent
+        />
+        {fontsLoaded ? <SignIn /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 }
