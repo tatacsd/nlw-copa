@@ -11,20 +11,12 @@ export const pollRoutes = async (fastify: FastifyInstance) => {
   });
 
   fastify.post('/polls', async (req, res) => {
-    const body = z.object({
+    const createpollBody = z.object({
       title: z.string(),
     });
-    const { title } = body.parse(req.body);
+    const { title } = createpollBody.parse(req.body);
     const generateID = new ShortUniqueId({ length: 6 });
     const code = String(generateID()).toUpperCase();
-
-    if (!title) {
-      return res.status(404).send({
-        message: 'title is required',
-      });
-    }
-
-    let ownerId = null;
 
     try {
       await req.jwtVerify();
@@ -102,14 +94,14 @@ export const pollRoutes = async (fastify: FastifyInstance) => {
         });
       }
 
-      await prisma.participant.create({
+      const participant = await prisma.participant.create({
         data: {
           pollId: poll.id,
           userId: req.user.sub,
         },
       });
 
-      return res.status(201).send();
+      return res.status(201).send(participant);
     }
   );
 
@@ -136,7 +128,6 @@ export const pollRoutes = async (fastify: FastifyInstance) => {
           participants: {
             select: {
               id: true,
-
               user: {
                 select: {
                   avatarUrl: true,
@@ -154,7 +145,7 @@ export const pollRoutes = async (fastify: FastifyInstance) => {
         },
       });
 
-      res.status(200).send(polls);
+      return { polls };
     }
   );
 
@@ -183,7 +174,6 @@ export const pollRoutes = async (fastify: FastifyInstance) => {
           participants: {
             select: {
               id: true,
-
               user: {
                 select: {
                   avatarUrl: true,
