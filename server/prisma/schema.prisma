@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Pool {
+model Poll {
   id           String        @id @default(cuid())
   title        String
   code         String        @unique
@@ -24,23 +24,23 @@ model Pool {
 model Participant {
   id      String  @id @default(cuid())
   userId  String
-  poolId  String
+  pollId  String
   guesses Guess[]
   user    User    @relation(fields: [userId], references: [id])
-  pool    Pool    @relation(fields: [poolId], references: [id])
+  poll    Poll    @relation(fields: [pollId], references: [id])
 
-  @@unique([userId, poolId])
+  @@unique([userId, pollId])
 }
 
 model User {
   id              String        @id @default(cuid())
   name            String
   email           String        @unique
-  googleId        String?       @unique
+  googleId        String        @unique
   avatarUrl       String?
   createdAt       DateTime      @default(now())
   participatingAt Participant[]
-  ownPools        Pool[]
+  ownPolls        Poll[]
 }
 
 model Game {

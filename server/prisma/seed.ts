@@ -8,12 +8,13 @@ async function main() {
       name: 'John Doe',
       email: 'john.doe@gmail.com',
       avatarUrl: 'https://github.com/tatacsd.png',
+      googleId: '1234567890',
     },
   });
 
-  const pool = await prisma.pool.create({
+  const poll = await prisma.poll.create({
     data: {
-      title: 'Example Pool',
+      title: 'Example poll',
       code: 'BOL123',
       ownerId: user.id,
 
@@ -46,9 +47,9 @@ async function main() {
 
           participant: {
             connect: {
-              userId_poolId: {
+              userId_pollId: {
                 userId: user.id,
-                poolId: pool.id,
+                pollId: poll.id,
               },
             },
           },
