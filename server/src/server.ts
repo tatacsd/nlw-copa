@@ -24,7 +24,7 @@ async function bootstrap() {
   await fastify.register(pollRoutes);
   await fastify.register(userRoutes);
 
-  await fastify.listen({ port: 3333 });
+  await fastify.listen({ port: 3333, host: '0.0.0.0' });
 }
 
 bootstrap();

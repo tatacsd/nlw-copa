@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from 'react';
 import { AuthContextDataProps } from '../interfaces/AuthContextDataProps';
 import { AuthProviderProps } from '../interfaces/AuthProviderProps';
 import { UserProps } from '../interfaces/UserProps';
+import { api } from '../services/api';
 
 maybeCompleteAuthSession();
 
@@ -33,8 +34,26 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  const signInWithGoogle = async (accessToken: string) => {
-    console.info('Auth token: ', accessToken);
+  const signInWithGoogle = async (access_token: string) => {
+    try {
+      setIsUserLoading(true);
+      const responseToken = await api.post('/users', {
+        access_token,
+      });
+
+      // add as header of all requests to the api
+      api.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${responseToken.data.token}`;
+
+      const userInfoResponse = await api.get('/me');
+      setUser(userInfoResponse.data.user);
+    } catch (error) {
+      console.error(error);
+      throw error; // it will throw the error to the component that called this function
+    } finally {
+      setIsUserLoading(false);
+    }
   };
 
   useEffect(() => {

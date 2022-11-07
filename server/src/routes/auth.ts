@@ -15,7 +15,7 @@ const userinfoSchema = z.object({
 });
 
 export const authRoutes = async (fastify: FastifyInstance) => {
-  fastify.post(
+  fastify.get(
     '/me',
     {
       onRequest: [authenticate],
