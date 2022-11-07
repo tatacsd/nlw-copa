@@ -1,6 +1,5 @@
 import { extendTheme } from 'native-base';
 
-// here we override the default theme colors and fonts
 export const THEME = extendTheme({
   colors: {
     gray: {
@@ -37,5 +36,6 @@ export const THEME = extendTheme({
   },
   sizes: {
     14: 56,
+    22: 87,
   },
 });

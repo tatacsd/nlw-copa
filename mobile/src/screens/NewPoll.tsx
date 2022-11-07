@@ -4,7 +4,7 @@ import { Button } from '../components/Button';
 import { Header } from '../components/Header';
 import { Input } from '../components/Input';
 
-export const NewPool = () => {
+export const NewPoll = () => {
   return (
     <VStack flex={1} bgColor={'gray.900'}>
       <Header title="Create a new pool" />
@@ -29,7 +29,7 @@ export const NewPool = () => {
           }}
         />
 
-        <Button title="CREATE MY POOL" onPress={() => console.log('teste')} />
+        <Button title="CREATE MY POLL" onPress={() => console.log('teste')} />
 
         <Text color="gray.200" fontSize="sm" textAlign="center" px={10} mt={4}>
           After creating your pool, you will receive a unique code that you can

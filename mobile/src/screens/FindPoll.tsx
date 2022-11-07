@@ -4,7 +4,7 @@ import { Header } from '../components/Header';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 
-export const FindPool = () => {
+export const FindPoll = () => {
   return (
     <VStack flex={1} bgColor={'gray.900'}>
       <Header title="Find a pool" showBackButton />

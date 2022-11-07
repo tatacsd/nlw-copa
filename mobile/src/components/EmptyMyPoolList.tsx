@@ -1,14 +1,14 @@
 import { Pressable, Row, Text } from 'native-base';
 
-interface EmptyMyPoolListProps {
+interface EmptyMyPollListProps {
   code: string;
 }
 
-export function EmptyMyPoolList({ code }: EmptyMyPoolListProps) {
+export function EmptyMyPollList({ code }: EmptyMyPollListProps) {
   return (
     <Row flexWrap="wrap" justifyContent="center" p={4}>
       <Text color="gray.200" fontSize="sm">
-        This pool doesn't have participants yet, why don't you
+        This poll doesn't have participants yet, why don't you
       </Text>
 
       <Pressable onPress={() => {}}>
