@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import { useAuth } from '../hooks/useAuth';
 
 export const SignIn = () => {
-  const { signInWithGoogle, user } = useAuth();
+  const { signIn, user } = useAuth();
   console.log(user);
   return (
     <Center flex={1} bgColor={'gray.900'} p={7}>
@@ -16,11 +16,11 @@ export const SignIn = () => {
         leftIcon={<Icon as={Fontisto} name="google" />}
         type={'SECONDARY'}
         mt={7}
-        onPress={signInWithGoogle}
+        onPress={signIn}
       />
       <Text color={'white'} textAlign={'center'} mt={4}>
-        We don't use any information besides {'\n'}your
-        email to create your account.
+        We don't use any information besides {'\n'}your email to create your
+        account.
       </Text>
     </Center>
   );
