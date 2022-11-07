@@ -7,6 +7,7 @@ import {
 import { NativeBaseProvider, StatusBar } from 'native-base';
 import { Loading } from './src/components/Loading';
 import { SignIn } from './src/screens/SignIn';
+import { THEME } from './src/styles/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,7 +18,7 @@ export default function App() {
 
   return (
     // it will wrap all the components to provide the theme to all app
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={THEME}>
       <StatusBar
         barStyle="light-content"
         backgroundColor={'transparent'}

@@ -1,4 +1,7 @@
-import { Center, Text } from 'native-base';
+import { Fontisto } from '@expo/vector-icons';
+import { Center, Icon, Text } from 'native-base';
+import Logo from '../assets/logo.svg';
+import { Button } from '../components/Button';
 
 export const SignIn = () => {
   return (
@@ -8,8 +11,14 @@ export const SignIn = () => {
         fontSize={24}
         fontFamily={'heading'}
       >
-        Hello World
+        <Logo width={212} height={40} />
+        Sign in
       </Text>
+      <Button
+        title={'Sign in with Google'}
+        leftIcon={<Icon as={Fontisto} name="google" />}
+        type={'SECONDARY'}
+      />
     </Center>
   );
 };
