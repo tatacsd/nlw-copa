@@ -5,20 +5,19 @@ import { Button } from '../components/Button';
 
 export const SignIn = () => {
   return (
-    <Center flex={1} bgColor={'gray.900'}>
-      <Text
-        color={'white'}
-        fontSize={24}
-        fontFamily={'heading'}
-      >
-        <Logo width={212} height={40} />
-        Sign in
-      </Text>
+    <Center flex={1} bgColor={'gray.900'} p={7}>
+      <Logo width={212} height={40} />
+
       <Button
         title={'Sign in with Google'}
         leftIcon={<Icon as={Fontisto} name="google" />}
         type={'SECONDARY'}
+        mt={7}
       />
+      <Text color={'white'} textAlign={'center'} mt={4}>
+        We don't use any information besides {'\n'}your
+        email to create your account.
+      </Text>
     </Center>
   );
 };
