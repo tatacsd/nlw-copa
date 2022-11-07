@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { FormEvent, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import appPreviewImage from '../assets/app-preview.svg';
 import userAvatars from '../assets/avatarExample.svg';
 import checkIcon from '../assets/checkIcon.svg';
@@ -26,14 +28,31 @@ export default function Home({
       });
       const { code } = response.data;
       navigator.clipboard.writeText(code);
-      alert('Copied to clipboard!');
+
+      toast.success('🦄 Code copied to clipboard!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: 'colored',
+      });
+
       setPoolTitle('');
     } catch (error) {
-      console.log(error);
-      alert('Erro ao criar pool');
+      toast.error(`🦄 Error creating pool: ${error}`, {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
-
-    console.log('create pool');
   };
   return (
     <div className="max-w-[1024px] h-screen mx-auto grid grid-cols-2 items-center gap-28">
@@ -109,6 +128,7 @@ export default function Home({
         alt="two mobiles displaying the app"
         quality={100}
       />
+      <ToastContainer />
     </div>
   );
 }
