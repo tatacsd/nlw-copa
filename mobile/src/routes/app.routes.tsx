@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'native-base';
 import { PlusCircle, SoccerBall } from 'phosphor-react-native';
 import { Platform } from 'react-native';
+import { Details } from '../screens/Details';
 import { FindPoll } from '../screens/FindPoll';
 import { NewPoll } from '../screens/NewPoll';
 import { Polls } from '../screens/Polls';
@@ -54,6 +55,12 @@ export const AppRoutes = () => {
       <Screen
         name="findPoll"
         component={FindPoll}
+        options={{ tabBarButton: () => null }} // hide tab bar button
+      />
+
+      <Screen
+        name="details"
+        component={Details}
         options={{ tabBarButton: () => null }} // hide tab bar button
       />
     </Navigator>
