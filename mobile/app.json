@@ -2,7 +2,7 @@
   "expo": {
     "name": "copaMobile",
     "slug": "copaMobile",
-    "schema": "copaMobile",
+    "scheme": "copaMobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
