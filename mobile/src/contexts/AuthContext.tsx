@@ -40,6 +40,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
       const responseToken = await api.post('/users', {
         access_token,
       });
+      console.warn('TOKEN --->', responseToken.data.token);
 
       // add as header of all requests to the api
       api.defaults.headers.common[
@@ -47,6 +48,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
       ] = `Bearer ${responseToken.data.token}`;
 
       const userInfoResponse = await api.get('/me');
+      console.warn('USER INFO SUB--->', userInfoResponse.data.user.sub);
       setUser(userInfoResponse.data.user);
     } catch (error) {
       console.error(error);
@@ -59,6 +61,7 @@ export const AuthContextProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     if (response?.type === 'success' && response?.authentication?.accessToken) {
       signInWithGoogle(response.authentication.accessToken);
+      console.warn('RESPONSE --->', response);
     }
   }, [response]);
 
