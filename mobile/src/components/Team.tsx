@@ -21,7 +21,10 @@ export function Team({ code, position, onChangeText }: TeamProps) {
         textAlign="center"
         fontSize="xs"
         keyboardType="numeric"
-        onChangeText={onChangeText}
+        onChangeText={() => {
+          onChangeText;
+          // Keyboard.dismiss();
+        }}
       />
 
       {position === 'right' && (
