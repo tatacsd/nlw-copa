@@ -26,8 +26,8 @@ export const authRoutes = async (fastify: FastifyInstance) => {
     }
   );
 
-  fastify.post('/users', async (request) => {
-    const { access_token } = createUserBody.parse(request.body);
+  fastify.post('/users', async (req, res) => {
+    const { access_token } = createUserBody.parse(req.body);
     const userResponse = await fetch(
       'https://www.googleapis.com/oauth2/v2/userinfo',
       {
